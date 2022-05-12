@@ -12,7 +12,7 @@ fastify.post('/', async (request, reply) => {
     dataPlanTTL=request.headers['mp-dataplanttl']);
         
   return check;
-})
+});
 
 // Run the server!
 const start = async () => {
