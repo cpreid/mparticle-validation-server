@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@mparticle/cli": "^1.0.8",
+    "dotenv": "^16.0.1",
     "fastify": "^3.29.0",
     "node-cache": "^5.1.2"
   }

@@ -1,17 +1,14 @@
-// Require the framework and instantiate it
+require('dotenv').config();
 const fastify = require('fastify')({ logger: true })
 const {validate} = require('./lib/mparticle-dataplan-client');
 
-// Declare a route
 fastify.post('/', async (request, reply) => {
-  // track event to mParticle
-  const check = await validate(
+  // pass request body directly to batch validator
+  return await validate(
     request.body, 
-    dataPlanId=request.headers['mp-dataplanid'], 
-    dataPlanVersion=request.headers['mp-dataplanversion'], 
-    dataPlanTTL=request.headers['mp-dataplanttl']);
-        
-  return check;
+    dataPlanId=request.headers['mp-dataplanid'] || process.env.dataplanId, 
+    dataPlanVersion=request.headers['mp-dataplanversion'] || process.env.dataplanVersion
+  );
 });
 
 // Run the server!
