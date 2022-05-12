@@ -1,0 +1,15 @@
+{
+  "devDependencies": {
+    "jest": "^27.0.6"
+  },
+  "scripts": {
+    "test": "jest",
+    "debug": "nodemon --ignore plans app.js",
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "@mparticle/cli": "^1.0.8",
+    "fastify": "^3.29.0",
+    "node-cache": "^5.1.2"
+  }
+}
