@@ -11,6 +11,7 @@
  * The server runs at http://localhost:3000 by default
  * Point an http client (ie Postman) at your server
  * Optionally, set http request headers `MP-DataplanVersion` & `MP-DataplanId` to override env variables
+ * Send an mParticl event batch to your validation server!
 
 ## Demo
 |    |   |
