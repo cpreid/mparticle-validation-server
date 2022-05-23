@@ -1,5 +1,5 @@
 # docker build -t mptestserver .
-# docker run -p 3000:3000 -v $(pwd):/usr/src/app mptestserver
+# docker run -p 3000:3000 mptestserver
 
 FROM node:18
 WORKDIR /usr/src/app
