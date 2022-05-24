@@ -2,6 +2,11 @@ require('dotenv').config();
 const fastify = require('fastify')({ logger: true })
 const {validate} = require('./lib/mparticle-dataplan-client');
 
+// allows docker process to be killed on cli
+process.on('SIGINT', function() {
+  process.exit();
+});
+
 fastify.post('/', async (request, reply) => {
   // pass request body directly to batch validator
   return await validate(

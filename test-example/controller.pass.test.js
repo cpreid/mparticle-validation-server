@@ -6,13 +6,15 @@ const { validate } = require('../lib/mparticle-dataplan-client');
 test('Passing test 1', () => { expect(1 + 1).toBe(2); });
 test('Passing test 2', () => { expect(2 * 2).toBe(4); });
 
-
 const mpClient = {
-  track: jest.fn(async payload => {
+  track: jest.fn(async payload => {    
     return await validate(payload,
       dataPlanId = payload.context.data_plan.plan_id,
       dataPlanVersion = payload.context.data_plan.plan_version
     );
+    // Or call the containerized service 
+    // const payloadValidationResponse = (await axios.post('http://localhost:3000', payload)).data;
+    // return payloadValidationResponse;
   })
 }
 
