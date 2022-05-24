@@ -7,10 +7,13 @@ _note: there is no need to install the mp-cli manually and configure, this abstr
 3. Start in dev using `npm run debug` or run in docker container `npm run docker`
 
 ## Usage
- * The server runs at http://localhost:3000 by default
- * Point an http client (ie Postman) at your server
- * Optionally, set http request headers `MP-DataplanVersion` & `MP-DataplanId` to override env variables
- * Send an mParticl event batch to your validation server!
+* The server runs at http://localhost:3000 by default (if using docker, modify port-mapping to expose an alternate port). 
+* Point an http client (ie Postman) at your server
+* Optionally, set http request headers `MP-DataplanVersion` & `MP-DataplanId` to override env variables
+* Send an mParticle event batch to your validation server!
+
+## Integrating in test suite
+Running integration tests will simulate sending data to mParticle's server will can catch and flag malformed events locally without having to provision additional developer mP accounts, educate developers on mP dataplans & dashboard, and manually configure and integrate mP-CLI tools. Simply mock the mParticle client's dispatch method (`upload_events` <Py>, `uploadEvents` <node>, etc. depending on your environment) to send requests to the validation server.
 
 ## Demo
 |    |   |
