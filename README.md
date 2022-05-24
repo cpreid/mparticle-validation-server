@@ -13,7 +13,7 @@ _note: there is no need to install the mp-cli manually and configure, this abstr
 * Send an mParticle event batch to your validation server!
 
 ## Integrating in test suite
-Running integration tests will simulate sending data to mParticle's server will can catch and flag malformed events locally without having to provision additional developer mP accounts, educate developers on mP dataplans & dashboard, and manually configure and integrate mP-CLI tools. Simply mock the mParticle client's dispatch method (`upload_events` <Py>, `uploadEvents` <node>, etc. depending on your environment) to send requests to the validation server.
+Running integration tests will simulate sending data to mParticle's server will can catch and flag malformed events locally without having to provision additional developer mP accounts, educate developers on mP dataplans & dashboard, and manually configure and integrate mP-CLI tools. Simply mock the mParticle client's dispatch method (`upload_events <Py>` , `uploadEvents <node>`, `UploadEvents` <go>, etc. depending on your environment) to send requests to the validation server.
 
 ## Demo
 |    |   |
