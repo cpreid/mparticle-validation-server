@@ -9,13 +9,15 @@ test('Passing test 2', () => { expect(2 * 2).toBe(4); });
 
 const mpClient = {
   track: jest.fn(async payload => {    
-    return await validate(payload,
-      dataPlanId = payload.context.data_plan.plan_id,
-      dataPlanVersion = payload.context.data_plan.plan_version
-    );
-    // Or call the containerized service 
-    // const payloadValidationResponse = (await axios.post('http://localhost:3000', payload)).data;
-    // return payloadValidationResponse;
+    // Call validation service
+    const payloadValidationResponse = (await axios.post('http://localhost:3000', payload)).data;
+    return payloadValidationResponse;
+
+    // Or invoke the validation node module directly
+    // return await validate(payload,
+    //   dataPlanId = payload.context.data_plan.plan_id,
+    //   dataPlanVersion = payload.context.data_plan.plan_version
+    // );    
   })
 }
 
@@ -38,7 +40,7 @@ describe("mP Tracking in Handlers", () => {
       "events": [
         {
           "data": {
-            "event_name": "Coupon_Used",
+            "event_name": "Coupon Used",
             "custom_event_type": "transaction",
             "custom_attributes": {
               "Coupon Code": "123",
@@ -52,7 +54,7 @@ describe("mP Tracking in Handlers", () => {
     expect(mpClient.track.mock.results[0].value).resolves.toEqual({ valid: true });
   });
 
-  test('Coupon Code Handler Sends Improper MP Payload', async () => {
+  test('Coupon Code Handler Sends Proper MP Payload', async () => {
     // took some liberties here for the sake of reducing complexity 
     // mock mP client invokes the validator module directory
     // but the mock mP client should be written to call the RESTful service    
@@ -64,11 +66,11 @@ describe("mP Tracking in Handlers", () => {
           "plan_version": 1
         }
       },
-      "environment": "development",
-      "user_identities": {
-        "customerid": "123",
-        "mobile_number": "2123459869"
+      "user_identitites": {
+        "email": "creid@mparticle.com",
+        "customer_id": "hh9f9q8h4f924hf"
       },
+      "environment": "development",
       "events": [
         {
           "data": {
@@ -84,7 +86,7 @@ describe("mP Tracking in Handlers", () => {
       ]
     }, mpClient);    
     expect(mpClient.track.mock.results[0].value).resolves.toEqual({ valid: true });
-  });
+  });  
 
 });
 
