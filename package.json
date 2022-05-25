@@ -6,8 +6,8 @@
   "scripts": {
     "test": "jest",
     "debug": "nodemon app.js",
-    "start": "node app.js",
-    "docker": "docker build -t mptestserver . && docker run -p 3000:3000 mptestserver"
+    "start": "docker run -p 3000:3000 mptestserver",
+    "build": "docker build -t mptestserver ."
   },
   "dependencies": {
     "@mparticle/cli": "^1.0.8",
