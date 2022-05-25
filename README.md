@@ -4,7 +4,7 @@
 _note: there is no need to install the mp-cli manually and configure, this abstracts all of that_
 1. Install dependencies `npm i`
 2. Copy `.env.template` to `.env` and populate it with your mParticle Data Plan API credentials and dataplan details (these can be overridded in http request)
-3. Start in dev using `npm run debug` or run in docker container `npm run docker`
+3. Start in dev using `npm run debug` or run in docker container, `npm run buid && npm start`
 
 ## Usage
 * The server runs at http://localhost:3000 by default (if using docker, modify port-mapping to expose an alternate port). 
