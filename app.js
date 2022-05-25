@@ -17,6 +17,10 @@ fastify.post('/', async (request, reply) => {
   );
 });
 
+fastify.all('*', (request, reply) => {
+  return {info: 'POST mParticle batch payload to / for validation'};
+});
+
 // Run the server!
 const start = async () => {
   try {
