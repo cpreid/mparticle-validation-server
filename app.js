@@ -7,13 +7,16 @@ process.on('SIGINT', function() {
   process.exit();
 });
 
-fastify.post('/', async (request, reply) => {
-  // pass request body directly to batch validator
+fastify.post('/', async (request, reply) => {  
+  const planFromBody = request.body.context && request.body.context.data_plan 
+                        ? {id: request.body.context.data_plan.plan_id, version: request.body.context.data_plan.plan_version}
+                        : {};  
+  // pass request body directly to batch validator                        
   return await validate(
     request.body, 
-    // allow request headers to override env variables
-    dataPlanId=request.headers['mp-dataplanid'] || process.env.dataplanId, 
-    dataPlanVersion=request.headers['mp-dataplanversion'] || process.env.dataplanVersion
+    // request headers >> body >> env variables
+    dataPlanId=request.headers['mp-dataplanid'] || planFromBody.id || process.env.dataplanId, 
+    dataPlanVersion=request.headers['mp-dataplanversion'] || planFromBody.version || process.env.dataplanVersion
   );
 });
 
